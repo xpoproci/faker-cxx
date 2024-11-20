@@ -26,7 +26,6 @@ class EsportTest : public TestWithParam<Locale>
 public:
 };
 
-// Ensure that generated players are valid for the given locale
 TEST_P(EsportTest, shouldGenerateValidPlayerForLocale)
 {
     const auto locale = GetParam();
@@ -40,7 +39,6 @@ TEST_P(EsportTest, shouldGenerateValidPlayerForLocale)
         << "Generated player is not valid for the locale.";
 }
 
-// Ensure unique players for a locale
 TEST_P(EsportTest, shouldGenerateUniquePlayersForLocale)
 {
     const auto locale = GetParam();
@@ -55,16 +53,14 @@ TEST_P(EsportTest, shouldGenerateUniquePlayersForLocale)
     ASSERT_GT(uniquePlayers.size(), 1) << "Player generation is not sufficiently unique for the locale.";
 }
 
-// Test for invalid or unsupported locale
 TEST(EsportInvalidLocaleTest, shouldHandleInvalidLocaleGracefully)
 {
-    const Locale invalidLocale = static_cast<Locale>(999); // Invalid locale
+    const Locale invalidLocale = static_cast<Locale>(999);
     const auto generatedPlayer = player(invalidLocale);
 
     ASSERT_FALSE(generatedPlayer.empty()) << "Generated player should fallback to a default locale, but is empty.";
 }
 
-// Ensure all data types are generated consistently for a locale
 TEST_P(EsportTest, shouldGenerateAllTypesForLocale)
 {
     const auto locale = GetParam();
@@ -94,7 +90,6 @@ TEST_P(EsportTest, shouldGenerateAllTypesForLocale)
                                     { return generatedGame == game; }));
 }
 
-// Test bulk generation for all esport data types
 TEST_P(EsportTest, shouldBulkGenerateDataForLocale)
 {
     const auto locale = GetParam();
