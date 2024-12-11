@@ -28,7 +28,10 @@ std::string hexadecimal(unsigned int length, HexCasing casing, HexPrefix prefix)
 
     const auto& hexadecimalPrefix = hexPrefixToStringMapping.at(prefix);
 
-    std::string hexadecimal{hexadecimalPrefix};
+    std::string hexadecimal;
+    hexadecimal.reserve(hexadecimalPrefix.size() + length);
+
+    hexadecimal += hexadecimalPrefix;
 
     for (unsigned i = 0; i < length; i++)
     {
